@@ -18,12 +18,45 @@ items.forEach(function (item) {
 
 list.addEventListener("click", function (item) {
 
-    if (item.target.tagName = "li") {
+    if(item.target.tagName== "LI"){
         item.target.classList.toggle("checked");
+        ToggleDeleteButton();
     }
 
 
 });
+
+document.querySelector("#deleteAll").onclick = function(){
+   
+   var elements = document.querySelectorAll(".checked"); 
+    
+    elements.forEach(function(item){
+       
+        item.style.display="none";
+        item.classList.remove("checked");
+        ToggleDeleteButton();
+    });
+    
+    
+}
+
+
+
+
+
+
+
+function ToggleDeleteButton(){
+    var checkList=document.querySelectorAll(".checked");
+    
+    if(checkList.length>0){
+        document.querySelector("#deleteAll").classList.remove("d-none");
+    }
+    else{
+        document.querySelector("#deleteAll").classList.add("d-none");
+    }
+}
+
 
 
 document.querySelector("#btnCreate").onclick = function () {
@@ -39,7 +72,7 @@ document.querySelector("#btnCreate").onclick = function () {
         document.querySelector("#txtItem").value = "";
     }
 
-};
+}
 
 
 
@@ -70,6 +103,8 @@ function CreateItem(item) {
         //close spanının parentElementi li yani linin içinde close spanı var
         var li = this.parentElement;
         li.style.display = "none";
+        li.classList.remove("checked");
+        ToggleDeleteButton();
     }
 
 
