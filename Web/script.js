@@ -20,9 +20,24 @@ items.forEach(function(item){
     
     span.className="close";
     span.appendChild(text);
+    span.style.cursor="pointer";
     li.appendChild(span);
     
+    
+    span.onclick=function(){
+        //close spanının parentElementi li yani linin içinde close spanı var
+        var li =this.parentElement;
+        li.style.display="none";
+    }
+    
+    
 });
+
+
+
+
+//getelementsbyclassname kullandığımız için foreach kullanamayız fakat queryselector kullansaydık rahatlıkla kullanabilirdik
+
 
 
 list.addEventListener("click", function(item){
